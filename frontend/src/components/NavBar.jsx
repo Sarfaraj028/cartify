@@ -1,7 +1,10 @@
-import React from "react"
-import { NavLink } from "react-router-dom"
+import React from "react";
+import { NavLink } from "react-router-dom";
+import { useCart } from "../context/CartContext";
 
 const Navbar = () => {
+  const { cart } = useCart();
+
   return (
     <nav className="bg-blue-600 text-white px-4 py-3 shadow-md">
       <div className="container mx-auto flex justify-between items-center">
@@ -37,7 +40,7 @@ const Navbar = () => {
               Add Product
             </NavLink>
           </li>
-          <li>
+          <li className="relative">
             <NavLink
               to="/cart"
               className={({ isActive }) =>
@@ -46,11 +49,16 @@ const Navbar = () => {
             >
               Cart
             </NavLink>
+            {cart.length > 0 && (
+              <span className="absolute -top-2 -right-3 bg-red-600 text-white text-xs px-2 py-0.5 rounded-full">
+                {cart.length}
+              </span>
+            )}
           </li>
         </ul>
       </div>
     </nav>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;

@@ -16,7 +16,7 @@ const CategoryForm = () => {
       const { data } = await axiosInstance.post("/categories", {
         name: category.trim(),
       })
-      toast.success(`✅ Category "${data.category.name}" added successfully!`)
+      toast.success(`Category "${data.category.name}" added successfully!`)
       setCategory("")
     } catch (error) {
       console.error(error)
@@ -33,7 +33,7 @@ const CategoryForm = () => {
         <input
           type="text"
           value={category}
-          onChange={(e) => setCategory(e.target.value)}
+          onChange={(e) => setCategory(e.target.value)} 
           placeholder="Enter category name"
           className="border px-4 py-2 rounded-md outline-0 focus:border-blue-400 focus:border-2"
         />
