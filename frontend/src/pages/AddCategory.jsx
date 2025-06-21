@@ -1,6 +1,5 @@
-import React from 'react'
-import axiosInstance from '../utils/axiosInstance'  
-import { useState } from "react"
+import React, { useState } from 'react'
+import axiosInstance from '../utils/axiosInstance'
 import { toast } from 'react-toastify'
 
 const CategoryForm = () => {
@@ -17,11 +16,13 @@ const CategoryForm = () => {
       const { data } = await axiosInstance.post("/categories", {
         name: category.trim(),
       })
-      toast.success(`✅ Category "${data.name}" added successfully!`)
+      toast.success(`✅ Category "${data.category.name}" added successfully!`)
       setCategory("")
     } catch (error) {
       console.error(error)
-      toast.error("Error: Couldn't Added!")
+      const msg =
+        error?.response?.data?.msg || "Error: Couldn't add category!"
+      toast.error(msg)
     }
   }
 
@@ -43,7 +44,6 @@ const CategoryForm = () => {
           Add Category
         </button>
       </form>
-      
     </div>
   )
 }
