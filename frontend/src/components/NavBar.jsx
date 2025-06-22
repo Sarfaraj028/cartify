@@ -31,6 +31,7 @@ const Navbar = () => {
 
           <li className="p-2">
             <NavLink
+              onClick={() => setToggle(false)}
               to="/api/products"
               className={({ isActive }) =>
                 isActive
@@ -43,6 +44,7 @@ const Navbar = () => {
           </li>
           <li className="p-2">
             <NavLink
+              onClick={() => setToggle(false)}
               to="/add-category"
               className={({ isActive }) =>
                 isActive
@@ -55,6 +57,7 @@ const Navbar = () => {
           </li>
           <li className="p-2">
             <NavLink
+              onClick={() => setToggle(false)}
               to="/add-product"
               className={({ isActive }) =>
                 isActive
@@ -67,6 +70,7 @@ const Navbar = () => {
           </li>
           <li className="relative p-2">
             <NavLink
+              onClick={() => setToggle(false)}
               to="/cart"
               className={({ isActive }) =>
                 isActive
