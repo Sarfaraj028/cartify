@@ -8,9 +8,9 @@ const CategoryForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     if (!category.trim()) {
-      toast.error("Please enter a category name")
-      return
+      return toast.error("Please enter a category name")
     }
+    if(category.length < 2 ) return toast.error("Length must me atleast 3 characters!")
 
     try {
       const { data } = await axiosInstance.post("/categories", {

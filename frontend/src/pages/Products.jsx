@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axiosInstance from "../utils/axiosInstance";
 import ProductCard from "../components/ProductCard";
 
-const Home = () => {
+const Products = () => {
   const [categories, setCategories] = useState([]);
   const [allProducts, setAllProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
@@ -95,4 +95,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Products;

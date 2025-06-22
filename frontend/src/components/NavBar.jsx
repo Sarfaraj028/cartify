@@ -6,18 +6,19 @@ const Navbar = () => {
   const { cart } = useCart();
 
   return (
-    <nav className="bg-blue-600 text-white px-4 py-3 shadow-md">
+    <nav className="w-full sticky top-0 bg-blue-600 text-white px-9 py-3 shadow-md ">
       <div className="container mx-auto flex justify-between items-center">
-        <h1 className="text-2xl font-bold">Cartify</h1>
-        <ul className="flex gap-6 text-lg font-medium">
+        <h1 className="md:text-2xl text-lg font-bold">Cartify</h1>
+        <ul className="flex gap-6 md:text-lg text-sm font-medium">
+          
           <li>
             <NavLink
-              to="/"
+              to="/api/products"
               className={({ isActive }) =>
                 isActive ? "text-yellow-300 underline" : "hover:text-yellow-200"
               }
             >
-              Home
+              Products
             </NavLink>
           </li>
           <li>

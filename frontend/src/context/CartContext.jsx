@@ -1,8 +1,11 @@
-import React,{ createContext, useContext, useReducer } from "react";
+// CartContext.jsx
+import React, { createContext, useReducer, useContext, useEffect } from "react";
 
 const CartContext = createContext();
 
-const cartReducer = (state, action) => {
+const initialCart = JSON.parse(localStorage.getItem("cart")) || [];
+
+const reducer = (state, action) => {
   switch (action.type) {
     case "ADD":
       const existing = state.find((item) => item._id === action.payload._id);
@@ -12,8 +15,9 @@ const cartReducer = (state, action) => {
             ? { ...item, quantity: item.quantity + 1 }
             : item
         );
+      } else {
+        return [...state, { ...action.payload, quantity: 1 }];
       }
-      return [...state, { ...action.payload, quantity: 1 }];
 
     case "INCREMENT":
       return state.map((item) =>
@@ -23,14 +27,19 @@ const cartReducer = (state, action) => {
       );
 
     case "DECREMENT":
-      return state.map((item) =>
-        item._id === action.payload && item.quantity > 1
-          ? { ...item, quantity: item.quantity - 1 }
-          : item
-      );
+      return state
+        .map((item) =>
+          item._id === action.payload
+            ? { ...item, quantity: item.quantity - 1 }
+            : item
+        )
+        .filter((item) => item.quantity > 0);
 
     case "REMOVE":
       return state.filter((item) => item._id !== action.payload);
+
+    case "CLEAR":
+      return [];
 
     default:
       return state;
@@ -38,7 +47,13 @@ const cartReducer = (state, action) => {
 };
 
 export const CartProvider = ({ children }) => {
-  const [cart, dispatch] = useReducer(cartReducer, []);
+  const [cart, dispatch] = useReducer(reducer, initialCart);
+
+  // 🟢 Save cart to localStorage on every change
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
+
   return (
     <CartContext.Provider value={{ cart, dispatch }}>
       {children}
@@ -47,4 +62,3 @@ export const CartProvider = ({ children }) => {
 };
 
 export const useCart = () => useContext(CartContext);
-export default CartContext

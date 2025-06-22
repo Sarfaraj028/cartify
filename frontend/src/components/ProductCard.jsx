@@ -14,11 +14,11 @@ const ProductCard = ({ product }) => {
   const { cart, dispatch } = useCart();
 
   return (
-    <div className="border rounded-lg shadow hover:shadow-md transition p-2">
+    <div className="border rounded-lg shadow hover:shadow-md transition p-2 ">
       <img
         src={product.image}
         alt={product.title}
-        className="w-full h-48 object-cover rounded"
+        className="w-full h-96 md:h-64 object-cover rounded"
       />
       <h3 className="text-lg font-semibold mt-2">{product.title}</h3>
       <div>
