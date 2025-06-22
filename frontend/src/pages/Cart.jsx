@@ -69,7 +69,7 @@ const Cart = () => {
       </div>
 
       {/* Total */}
-      <div className="bg-white p-6 rounded shadow">
+       <div className="bg-white p-6 rounded shadow">
         <h2 className="text-lg font-semibold mb-4">💰 Total Summary</h2>
         <p>Price ₹{oldTotal}</p>
         <p>Discount ₹{oldTotal - total}</p>
