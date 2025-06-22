@@ -4,7 +4,7 @@ import { upload } from "../middleware/multer.middleware.js";
 
 const router = express.Router()
 
-router.post("/", upload.single("image"), createProduct)
 router.get("/", getProduct)
+router.post("/", upload.single("image"), createProduct)
 
 export default router
